@@ -1,0 +1,18 @@
+# BarskNet
+This is an experiment to learn Alpine, ARM, Containers, Security, and Enterprise Infrastruicture
+
+Use any of this at your own risk!!
+
+Tools used, but may be swapped out with preffered container technology
+
+## Hardware
+4x 8GB Raspberry Pi 4 
+4x 500GB SSDs
+
+## Software
+- [Alpine](https://www.alpinelinux.org)
+- [NerdCtl](https://github.com/containerd/nerdctl)
+
+
+
+
