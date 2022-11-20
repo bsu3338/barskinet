@@ -6,8 +6,8 @@ Use any of this at your own risk!!
 Tools used, but may be swapped out with preffered container technology
 
 ## Hardware
-4x 8GB Raspberry Pi 4 
-4x 500GB SSDs
+- 4x 8GB Raspberry Pi 4 
+- 4x 500GB SSDs
 
 ## Software
 - [Alpine](https://www.alpinelinux.org)
