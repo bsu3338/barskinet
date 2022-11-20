@@ -1,4 +1,4 @@
-# BarskNet
+# BarskiNet
 This is an experiment to learn Alpine, ARM, Containers, Security, and Enterprise Infrastruicture
 
 Use any of this at your own risk!!
