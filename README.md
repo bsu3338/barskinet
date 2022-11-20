@@ -11,9 +11,9 @@ Tools used, but may be swapped out with preffered container technology
 
 ## Software
 - [Alpine](https://www.alpinelinux.org)
-&ndash;Minimal based Linux Distribution 
+&ndash; Minimal based Linux Distribution 
 - [NerdCtl](https://github.com/containerd/nerdctl)
---Command line utility to administer containerd
+&ndash; Command line utility to administer containerd
 - [Container Network Interface](https://github.com/containernetworking/cni)
 - [SmallStep-CA]
 - [Authelia]
