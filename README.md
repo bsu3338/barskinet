@@ -39,4 +39,8 @@ For Cm4
 8. mount /dev/nvme0n1p1 /mnt/newroot/boot
 9. cp /media/mmcblk0p1/usercfg.txt /mnt/newboot/boot
 10. chroot /mnt/newroot
-11. 
+11. mount -t proc proc /proc
+12. mount -t sysfs sysfs /sys
+13. mount -t devtmpfs devtmpfs /dev
+14. 
+
