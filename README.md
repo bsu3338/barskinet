@@ -25,3 +25,8 @@ Tools used, but may be swapped out with preffered container technology
 - [Keepalived]
 - [DRBD]
 
+## Setup Alpine on Raspberry Pi
+[Alpine Pi Instructions](https://wiki.alpinelinux.org/wiki/Raspberry_Pi)
+For the USB ports to work, be sure to place in the config.txt
+otg_mode=1
+
