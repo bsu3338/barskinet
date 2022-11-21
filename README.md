@@ -27,6 +27,10 @@ Tools used, but may be swapped out with preffered container technology
 
 ## Setup Alpine on Raspberry Pi
 [Alpine Pi Instructions](https://wiki.alpinelinux.org/wiki/Raspberry_Pi)
-For the USB ports to work, be sure to place in the config.txt
-otg_mode=1
+
+For Cm4
+- Install RPIBoot in Windows
+- Jumper J2
+- Create usercfg.txt
+- Add `otg_mode=1` for the USB ports to work 
 
