@@ -33,14 +33,16 @@ For Cm4
 2. Jumper J2
 3. Create usercfg.txt
 4. Add `otg_mode=1` for the USB ports to work 
-5. do a sys install on the NVME
-6. mkdir /mnt/newroot
-7. mount /dev/nvme0n1p2 /mnt/newroot/
-8. mount /dev/nvme0n1p1 /mnt/newroot/boot
-9. cp /media/mmcblk0p1/usercfg.txt /mnt/newboot/boot
-10. chroot /mnt/newroot
-11. mount -t proc proc /proc
-12. mount -t sysfs sysfs /sys
-13. mount -t devtmpfs devtmpfs /dev
-14. 
+5. remove jumper
+6. Unplug NVME Drive before install to install on emmc
+7. do a sys install on the mmcblk0
+8. poweroff 
+9. plug in NVME
+10. boot
+11. fdisk /dev/nvme0n1
+12. Create new partition
+13. mkfs.ext4 /dev/nvme0n1p1
+14. Note UUID
+15. edit fstab
+16. UUID=14886657-84eb-4cec-85a7-de78cdfd1724       /       ext4    rw,relatime 0 1
 
