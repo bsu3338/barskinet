@@ -35,18 +35,19 @@ For Cm4
 4. Add `otg_mode=1` for the USB ports to work 
 5. remove jumper
 6. Unplug NVME Drive before install to install on emmc
-7. do a sys install on the mmcblk0
-8. poweroff 
-9. plug in NVME
-10. boot
-11. fdisk /dev/nvme0n1
-12. Create new partition
-13. mkfs.ext4 /dev/nvme0n1p1
-14. Note UUID
-15. apk add nano
-16. edit fstab
-17. UUID=14886657-84eb-4cec-85a7-de78cdfd1724       /       ext4    defaults 0 2
-18. mount -a
+7. If you own a dns name us it or home.arpa [RFC Reference](https://datatracker.ietf.org/doc/html/rfc8375)
+8. do a sys install on the mmcblk0
+9. poweroff 
+10. plug in NVME
+11. boot
+12. fdisk /dev/nvme0n1
+13. Create new partition
+14. mkfs.ext4 /dev/nvme0n1p1
+15. Note UUID
+16. apk add nano
+17. edit fstab
+18. UUID=14886657-84eb-4cec-85a7-de78cdfd1724       /       ext4    defaults 0 2
+19. mount -a
 
 ## Setup Containerd, CNI, and NerdCtl
 1. nano /etc/apk/repositories
