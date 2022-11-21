@@ -33,4 +33,10 @@ For Cm4
 - Jumper J2
 - Create usercfg.txt
 - Add `otg_mode=1` for the USB ports to work 
-
+- do a sys install on the NVME
+- mkdir /mnt/newroot
+- mount /dev/nvme0n1p2 /mnt/newroot/
+- mount /dev/nvme0n1p1 /mnt/newroot/boot
+- cp /media/mmcblk0p1/usercfg.txt /mnt/newboot/boot
+- chroot /mnt/newroot
+- 
