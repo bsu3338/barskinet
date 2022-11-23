@@ -85,13 +85,31 @@ For Cm4
 18. rm cni-plugins-linux-arm64-v1.1.1.tgz
 
 ## Pi-Hole
-### Learning Objective
+### Learning Objectives
 - Basic Dcoker Compose File Layout
 - DNS
 - DHCP
 - DNS/DHCP Security Best Practices
 
-## Setup Private Registry to Host Docker Containers
+### Lab
+Use the Instructions from [Pi-Hole Quickstart](https://github.com/pi-hole/docker-pi-hole/#quick-start)
 
+1. Place the docker-compose.yml file in the /srv folder to keep all container files on the NVME or external storage
+2. Create the below folder structure under srv
+- config &ndash; Used to store configutaion files for all containers 
+- data &ndash; Used to store data files for all containers
+3. In future labs, we will be able to backup all of our configurations or data quickly by just grabbing one folder
+4. cd /srv/config/pihole
+5. mkdir vol
+6. mkdir env
+7. mkdir secrets
+8. For every container, we will create the same three folders: vol for persistent volumes, env for environment variables, and secrets to store passwords
+9. cd /srv/config/pihole/vol/
+10. mkdir etc-pihole
+11. mkdir etc-dnsmasq.d
+12. Update docker-compose to use the recently created folders
+13. 
+
+## Setup Private Registry to Host Docker Containers
 
 
