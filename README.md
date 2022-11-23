@@ -26,6 +26,14 @@ Tools used, but may be swapped out with preffered container technology
 - [DRBD]
 
 ## Setup Alpine on Raspberry Pi
+### Learning Objectives
+- Raspberry Pi CM4 emmc configuration
+- Alpine Installation
+- Disk Partitioning
+- File System Formating
+- fstab file format
+
+### Lab
 [Alpine Pi Instructions](https://wiki.alpinelinux.org/wiki/Raspberry_Pi)
 
 For Cm4
@@ -50,6 +58,13 @@ For Cm4
 19. mount -a
 
 ## Setup Containerd, CNI, and NerdCtl
+### Learning Objectives
+- Alpine Packages
+- Containerd Installation
+- Container Network Interface (CNI) Installation
+- NerdCTL Installation
+
+### Lab
 1. nano /etc/apk/repositories
 2. uncomment community in addition to main
 3. apk update
@@ -68,6 +83,13 @@ For Cm4
 16. cp cni-plugins-linux-arm64-v1.1.1.tgz /opt/cni/bin/
 17. tar -xzf cni-plugins-linux-arm64-v1.1.1.tgz
 18. rm cni-plugins-linux-arm64-v1.1.1.tgz
+
+## Pi-Hole
+### Learning Objective
+- Basic Dcoker Compose File Layout
+- DNS
+- DHCP
+- DNS/DHCP Security Best Practices
 
 ## Setup Private Registry to Host Docker Containers
 
