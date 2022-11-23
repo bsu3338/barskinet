@@ -56,6 +56,12 @@ For Cm4
 17. edit fstab
 18. UUID=14886657-84eb-4cec-85a7-de78cdfd1724       /       ext4    defaults 0 2
 19. mount -a
+20. date 
+21. chronyc -a sources
+22. chronyc -a tracking
+23. chronyc -a 'burst 4/4'
+24. chronyc -a makestep
+
 
 ## Setup Containerd, CNI, and NerdCtl
 ### Learning Objectives
@@ -90,14 +96,17 @@ For Cm4
 - DNS
 - DHCP
 - DNS/DHCP Security Best Practices
+- Docker User Group
+- Docker Environment file
+- Docker Secrets
 
 ### Lab
 Use the Instructions from [Pi-Hole Quickstart](https://github.com/pi-hole/docker-pi-hole/#quick-start)
 
 1. Place the docker-compose.yml file in the /srv folder to keep all container files on the NVME or external storage
 2. Create the below folder structure under srv
-- config &ndash; Used to store configutaion files for all containers 
-- data &ndash; Used to store data files for all containers
+  - config &ndash; Used to store configutaion files for all containers 
+  - data &ndash; Used to store data files for all containers
 3. In future labs, we will be able to backup all of our configurations or data quickly by just grabbing one folder
 4. cd /srv/config/pihole
 5. mkdir vol
@@ -108,7 +117,13 @@ Use the Instructions from [Pi-Hole Quickstart](https://github.com/pi-hole/docker
 10. mkdir etc-pihole
 11. mkdir etc-dnsmasq.d
 12. Update docker-compose to use the recently created folders
-13. 
+13. Try processing the docker compose file. First change directory to /srv. My most often used commands:
+  - nerdctl compose up --detach
+  - nerdctl compose ps
+  - nerdctl compose down
+  - nerdctl compose logs
+  - nerdctl compose logs --follow
+ 14. 
 
 ## Setup Private Registry to Host Docker Containers
 
