@@ -161,7 +161,8 @@ Use the Instructions from [Pi-Hole Quickstart](https://github.com/pi-hole/docker
 7. `apk install rootlesskit`
 8. `apk install slirp4netns`
 9. create file /etc/profile.d/xdg_runtime_dir.sh
-```if test -z "${XDG_RUNTIME_DIR}"; then
+```
+if test -z "${XDG_RUNTIME_DIR}"; then
   export XDG_RUNTIME_DIR=/tmp/$(id -u)-runtime-dir
   if ! test -d "${XDG_RUNTIME_DIR}"; then
     mkdir "${XDG_RUNTIME_DIR}"
