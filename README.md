@@ -129,7 +129,39 @@ Use the Instructions from [Pi-Hole Quickstart](https://github.com/pi-hole/docker
  15. Do not need secrets because random password is stored encrypted in pihole volume
    - Sometimes environment variables are used just to set the initial password when spinning up a container. Once the password is stored in an encrypted format within the data or configuration file, remove all references to password environment variables and store passwords in a password database
  16. `nerdctl exec -it pihole pihole -a -p`
- 17. Run `ps aux`  
+ 17. Run `ps aux` Notice the user the pi processes are running. We want to create users for the pi container to runas 
+ 18. Enter the container with `nerdctl exec -it pihole /bin/bash` and then do `cat /etc/passwd` Note the pihole userid and www-data userid 
+   - `exit` to leave container back to the host
+ 19.Create a pihole user and piwww user
+   - `adduser pihole --disabled-password`
+   - `adduser pihole_www-data --disabled-password`
+   - `cat /etc/passwd`
+   - Note the userid of each, example 1001 and 1002
+  20. Edit environment variables
+    - PIHOLE_UID: 1001
+    - PIHOLE_GID: 1001
+    - WEB_UID: 1002
+    - WEB_GID: 1002
+  21. Down and up the compose file or just up it again   
+
+## Rootless
+### Learning Objectives
+- Rootless Containers
+
+### Lab
+[nerdctl rootless](https://github.com/containerd/nerdctl/blob/main/docs/rootless.md)
+[Upgrade Alpine to New Release](https://wiki.alpinelinux.org/wiki/Upgrading_Alpine)
+
+1. Required rootlesskit and slirp4netns can only be found in the edge repositories
+2. edit /etc/apk/repositories
+3. Comment out current version and uncomment edge main and community
+4. `apk update`
+5. `apk add --upgrade apk-tools`
+6. `apk upgrade --available` 
+7. Switch to the pihole user `su pihole`
+8. `containerd-rootless-setuptool.sh install`
+9. 
+
 
 ## Setup Private Registry to Host Docker Containers
 
