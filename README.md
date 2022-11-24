@@ -161,9 +161,10 @@ Use the Instructions from [Pi-Hole Quickstart](https://github.com/pi-hole/docker
 7. `apk install rootlesskit` needed by containerd-rootless.sh
 8. `apk install slirp4netns` needed by containerd-rootless.sh
 9. `apk add iproute2-minimal` needed by containerd-rootless.sh
-10. `mkdir /run/user`
-11. `chmod 1777 /run/user`  Sticky bit is important
-12. create file /etc/profile.d/xdg_runtime_dir.sh
+10. `modprobe tun` Need to add instructions to include on startup
+11. `mkdir /run/user`
+12. `chmod 1777 /run/user`  Sticky bit is important
+13. create file /etc/profile.d/xdg_runtime_dir.sh
 ```
 if test -z "${XDG_RUNTIME_DIR}"; then
   export XDG_RUNTIME_DIR=/run/user/$(id -u)
