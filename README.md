@@ -167,7 +167,8 @@ Use the Instructions from [Pi-Hole Quickstart](https://github.com/pi-hole/docker
     mkdir "${XDG_RUNTIME_DIR}"
     chmod 0700 "${XDG_RUNTIME_DIR}"
   fi
-fi```
+fi
+```
 10. Switch to the pihole user `su pihole`
 11. `containerd-rootless-setuptool.sh install`
 12. 
