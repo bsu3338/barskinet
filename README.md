@@ -108,28 +108,28 @@ Use the Instructions from [Pi-Hole Quickstart](https://github.com/pi-hole/docker
   - config &ndash; Used to store configutaion files for all containers 
   - data &ndash; Used to store data files for all containers
 3. In future labs, we will be able to backup all of our configurations or data quickly by just grabbing one folder
-4. cd /srv/config/pihole
-5. mkdir vol
-6. mkdir env
+4. `cd /srv/config/pihole`
+5. `mkdir vol`
+6. `mkdir env`
 7. For every container, we will create the same three folders: vol for persistent volumes, env for environment variables, and secrets to store passwords
 8. cd /srv/config/pihole/vol/
-9. mkdir etc-pihole
-10. mkdir etc-dnsmasq.d
+9. `mkdir etc-pihole`
+10. `mkdir etc-dnsmasq.d`
 11. Update docker-compose to use the recently created folders
 12. Try processing the docker compose file. First change directory to /srv. My most often used commands:
-  - nerdctl compose up --detach
-  - nerdctl compose ps
-  - nerdctl compose down
-  - nerdctl compose logs
-  - nerdctl compose logs --follow
-  - nerdctl compose config
-  - nerdctl compose pull
+  - `nerdctl compose up --detach`
+  - `nerdctl compose ps`
+  - `nerdctl compose down`
+  - `nerdctl compose logs`
+  - `nerdctl compose logs --follow`
+  - `nerdctl compose config`
+  - `nerdctl compose pull`
  13. Use the logs option to find the auto generated admin password
  14. Move variables to use an environment file
  15. Do not need secrets because random password is stored encrypted in pihole volume
    - Sometimes environment variables are used just to set the initial password when spinning up a container. Once the password is stored in an encrypted format within the data or configuration file, remove all references to password environment variables and store passwords in a password database
- 16. nerdctl exec -it pihole pihole -a -p
- 17.  
+ 16. `nerdctl exec -it pihole pihole -a -p`
+ 17. Run `ps aux`  
 
 ## Setup Private Registry to Host Docker Containers
 
