@@ -160,19 +160,26 @@ Use the Instructions from [Pi-Hole Quickstart](https://github.com/pi-hole/docker
 6. `apk upgrade --available` 
 7. `apk install rootlesskit`
 8. `apk install slirp4netns`
-9. create file /etc/profile.d/xdg_runtime_dir.sh
+9. `mkdir /run/user`
+10. `chmod 1777 /run/user`  Sticky bit is important
+11. create file /etc/profile.d/xdg_runtime_dir.sh
 ```
 if test -z "${XDG_RUNTIME_DIR}"; then
-  export XDG_RUNTIME_DIR=/tmp/$(id -u)-runtime-dir
+  export XDG_RUNTIME_DIR=/run/user/$(id -u)
   if ! test -d "${XDG_RUNTIME_DIR}"; then
     mkdir "${XDG_RUNTIME_DIR}"
     chmod 0700 "${XDG_RUNTIME_DIR}"
   fi
 fi
 ```
-10. Switch to the pihole user `su pihole`
-11. `containerd-rootless-setuptool.sh install`
-12. 
+10. Set password to the pihole user to login and out, then disable
+- passwd pihole temppass
+- login pihole
+- exit
+- passwd -l pihole
+12. Switch to the pihole user `su pihole`
+13. `containerd-rootless-setuptool.sh install`
+14. 
 
 
 ## Setup Private Registry to Host Docker Containers
