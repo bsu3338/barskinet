@@ -180,9 +180,12 @@ fi
 - exit
 - passwd -l pihole
 12. Switch to the pihole user `su - pihole` the dash is important to set the XDG_RUNTIME_VARIABLE
-13. 
-14. `containerd-rootless-setuptool.sh install`
-15. 
+13. edit /etc/subuid  
+ - pihole:231072:65536
+15. edit /etc/subgid
+ - pihole:231072:65536
+17. `containerd-rootless.sh`
+18. 
 
 
 ## Setup Private Registry to Host Docker Containers
