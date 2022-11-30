@@ -190,4 +190,6 @@ fi
 
 ## Setup Private Registry to Host Docker Containers
 
-
+## Side Project
+apk add libc6-compat
+download full version of containerd
