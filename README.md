@@ -191,10 +191,10 @@ fi
 ## Setup Private Registry to Host Docker Containers
 
 ## Side Project
-apk add libc6-compat
-download full version of containerd
-Enable cgroups 
-set rc.conf rc_cgroup_mode="unified"
-rc-service cgroups start
-rc-update add cgroups
+- apk add libc6-compat
+- download full version of containerd
+- Enable cgroups 
+- set rc.conf rc_cgroup_mode="unified"
+- rc-service cgroups start
+- rc-update add cgroups
 
