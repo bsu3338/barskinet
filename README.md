@@ -199,7 +199,10 @@ fi
 6. `apk upgrade --available` 
 9. `apk add iproute2-minimal` needed by containerd-rootless.sh
 10. `modprobe tun` Need to add instructions to include on startup
-13. create file /etc/profile.d/xdg_runtime_dir.sh
+11. `modprobe ip_tables`
+12. `modprobe ip6_tables`
+13. sysctl net.ipv4.ip_unprivileged_port_start=0  #needed to bind to lower ports
+14. create file /etc/profile.d/xdg_runtime_dir.sh
 ```
 if test -z "${XDG_RUNTIME_DIR}"; then
   export XDG_RUNTIME_DIR=/tmp/$(id -u)
@@ -215,17 +218,19 @@ fi
 15. edit /etc/subgid
  - pihole:231072:65536
 17. apk add shadow-subids
-apk add util-linux-misc
+- apk add util-linux-misc
+- # Needed to prevent error The host root filesystem is mounted as "". Setting child propagation to "rslave" is not supported.
+- cd /etc/local.d/
+- touch mount.start
+- echo “mount --make-rshared /” > mount.start
+- chmod +x mount.start
+- rc-update add local
+- Enable cgroups 
+- set rc.conf rc_cgroup_mode="unified"
+- rc-service cgroups start
+- rc-update add cgroups 
 
-# Needed to prevent error The host root filesystem is mounted as "". Setting child propagation to "rslave" is not supported.
-cd /etc/local.d/
-touch mount.start
-echo “mount --make-rshared /” > mount.start
-chmod +x mount.start
-rc-update add local
-
-
-`containerd-rootless.sh`
+- `containerd-rootless.sh`
 18. 
 
 ## Setup Private Registry to Host Docker Containers
