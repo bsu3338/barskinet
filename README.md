@@ -187,6 +187,38 @@ fi
 17. `containerd-rootless.sh`
 18. 
 
+### Lab Full Containerd Install
+[nerdctl rootless](https://github.com/containerd/nerdctl/blob/main/docs/rootless.md)
+[Upgrade Alpine to New Release](https://wiki.alpinelinux.org/wiki/Upgrading_Alpine)
+
+1. Required rootlesskit and slirp4netns can only be found in the edge repositories
+2. edit /etc/apk/repositories
+3. Comment out current version and uncomment edge main and community
+4. `apk update`
+5. `apk add --upgrade apk-tools`
+6. `apk upgrade --available` 
+9. `apk add iproute2-minimal` needed by containerd-rootless.sh
+10. `modprobe tun` Need to add instructions to include on startup
+13. create file /etc/profile.d/xdg_runtime_dir.sh
+```
+if test -z "${XDG_RUNTIME_DIR}"; then
+  export XDG_RUNTIME_DIR=/tmp/$(id -u)
+  if ! test -d "${XDG_RUNTIME_DIR}"; then
+    mkdir "${XDG_RUNTIME_DIR}"
+    chmod 0700 "${XDG_RUNTIME_DIR}"
+  fi
+fi
+```
+12. Switch to the pihole user `su - pihole` the dash is important to set the XDG_RUNTIME_VARIABLE
+13. edit /etc/subuid  
+ - pihole:231072:65536
+15. edit /etc/subgid
+ - pihole:231072:65536
+17. apk add shadow-subids
+
+
+`containerd-rootless.sh`
+18. 
 
 ## Setup Private Registry to Host Docker Containers
 
