@@ -215,6 +215,14 @@ fi
 15. edit /etc/subgid
  - pihole:231072:65536
 17. apk add shadow-subids
+apk add util-linux-misc
+
+# Needed to prevent error The host root filesystem is mounted as "". Setting child propagation to "rslave" is not supported.
+cd /etc/local.d/
+touch mount.start
+echo “mount --make-rshared /” > mount.start
+chmod +x mount.start
+rc-update add local
 
 
 `containerd-rootless.sh`
