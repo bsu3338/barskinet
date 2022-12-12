@@ -144,6 +144,10 @@ init() {
                 sed -i '/rc_cgroup_mode=/c\rc_cgroup_mode=\"unified\"' /etc/rc.conf
         fi
         
+        if ! rc-update | grep cgroups | grep default >/dev/null 2>&1; then
+                rc-update add cgroups
+                rc-service cgroups start
+        fi
 
 
         # Check then install required packages
