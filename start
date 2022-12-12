@@ -1,0 +1,35 @@
+#!/bin/sh
+
+if test -z "${XDG_RUNTIME_DIR}"; then
+  export XDG_RUNTIME_DIR=/tmp/$(id -u)
+  if ! test -d "${XDG_RUNTIME_DIR}"; then
+    mkdir -p "${XDG_RUNTIME_DIR}"
+    chmod 0700 "${XDG_RUNTIME_DIR}"
+  fi
+fi
+while true
+do
+        #check bypass first
+        if pgrep -U 1001 -x /usr/local/bin/bypass4netnsd
+        then
+                echo "bypass4netnsd is running"
+                logger "bypass4netnsd is running"
+        else
+                /usr/local/bin/bypass4netnsd &
+                logger "Starting bypass4netnsd"
+        fi
+
+        #Only run containerd if bypass is running
+        if pgrep -U 1001 -x /usr/local/bin/bypass4netnsd
+        then
+                if pgrep -U 100 -x containerd
+                then
+                        echo "containerd is running"
+                        logger "containerd is running"
+                else
+                        /usr/local/bin/containerd-rootless.sh &
+                        logger "Starting containerd-rootless.sh"
+                fi
+        fi
+        sleep 300
+done
