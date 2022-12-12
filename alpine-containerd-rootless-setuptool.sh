@@ -177,26 +177,19 @@ init() {
 
         # Configure mount so rootlesskit can use rslave
 
-        # Add XDG_RUNTIME_DIR to profile
-
-
-
-
-
-#       if [ ! -w "$HOME" ]; then
-#               ERROR "HOME needs to be writable"
-#               exit 1
-#       fi
-
-        # Validate XDG_RUNTIME_DIR
-#       if [ -z "${XDG_RUNTIME_DIR:-}" ] || [ ! -w "$XDG_RUNTIME_DIR" ]; then
-#               ERROR "Aborting because but XDG_RUNTIME_DIR (\"$XDG_RUNTIME_DIR\") is not set, does not exist, or is not writable"
-#               ERROR "Hint: this could happen if you changed users with 'su' or 'sudo'. To work around this:"
-#               ERROR "- try again by first running with root privileges 'loginctl enable-linger <user>' where <user> is the unprivileged user and export XDG_RUNTIME_DIR to the value of RuntimePath as shown by 'loginctl show-user <user>'"
-#               ERROR "- or simply log back in as the desired unprivileged user (ssh works for remote machines, machinectl shell works for local machines)"
-#               ERROR "See also https://rootlesscontaine.rs/getting-started/common/login/ ."
-#               exit 1
-#       fi
+        # Validate XDG_RUNTIME_DIR set in /etc/profile.d
+        if ! grep XDG_RUNTIME_DIR /etc/profile.d/* >/dev/null 2>&1; then
+                INFO installing rootless.sh script to set XDG_RUNTIME_DIR variable in /etc/profile.d
+                cat <<-EOF | > /etc/profile.d/rootless.sh
+                        if test -z "${XDG_RUNTIME_DIR}"; then
+                          export XDG_RUNTIME_DIR=/tmp/$(id -u)
+                          if ! test -d "${XDG_RUNTIME_DIR}"; then
+                            mkdir "${XDG_RUNTIME_DIR}"
+                            chmod 0700 "${XDG_RUNTIME_DIR}"
+                          fi
+                        fi
+                      EOF
+       fi
 }
 
 # CLI subcommand: "check"
