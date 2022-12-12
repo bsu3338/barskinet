@@ -139,6 +139,12 @@ init() {
         fi
 
         # Enable cgroups2
+        if ! grep -x rc_cgroup_mode=\"unified\" /etc/rc.conf >/dev/null 2>&1; then
+                INFO Configuring cgroups2
+                sed -i '/rc_cgroup_mode=/c\rc_cgroup_mode=\"unified\"' /etc/rc.conf
+        fi
+        
+
 
         # Check then install required packages
         # Add community repository
