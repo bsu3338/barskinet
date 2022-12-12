@@ -198,11 +198,12 @@ fi
 5. `apk add --upgrade apk-tools`
 6. `apk upgrade --available` 
 9. `apk add iproute2-minimal` needed by containerd-rootless.sh
-10. `modprobe tun` Need to add instructions to include on startup
-11. `modprobe ip_tables`
-12. `modprobe ip6_tables`
-13. sysctl net.ipv4.ip_unprivileged_port_start=0  #needed to bind to lower ports
-14. create file /etc/profile.d/xdg_runtime_dir.sh
+10. `apk add curl` need to check github for most recent version
+11. `modprobe tun` Need to add instructions to include on startup
+12. `modprobe ip_tables`
+13. `modprobe ip6_tables`
+14. sysctl net.ipv4.ip_unprivileged_port_start=0  #needed to bind to lower ports
+15. create file /etc/profile.d/xdg_runtime_dir.sh
 ```
 if test -z "${XDG_RUNTIME_DIR}"; then
   export XDG_RUNTIME_DIR=/tmp/$(id -u)
