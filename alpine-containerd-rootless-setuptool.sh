@@ -180,7 +180,7 @@ init() {
         # Validate XDG_RUNTIME_DIR set in /etc/profile.d
         if ! grep XDG_RUNTIME_DIR /etc/profile.d/* >/dev/null 2>&1; then
                 INFO installing rootless.sh script to set XDG_RUNTIME_DIR variable in /etc/profile.d
-                cat <<-EOF | > /etc/profile.d/rootless.sh
+                cat <<-EOF > /etc/profile.d/rootless.sh
                         if test -z "${XDG_RUNTIME_DIR}"; then
                           export XDG_RUNTIME_DIR=/tmp/$(id -u)
                           if ! test -d "${XDG_RUNTIME_DIR}"; then
