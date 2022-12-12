@@ -1,0 +1,22 @@
+#!/sbin/openrc-run
+# Copyright 2021 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+name="userd daemon"
+description="user specific init and shutdown spawner"
+
+user_name=${user:-${RC_SVCNAME#userd.}}
+user_homedir="$(getent passwd ${user_name} | cut -d: -f6)"
+user_userd="${user_homedir}/.userd/"
+shutdown_timeout=${shutdown_timeout:-"5m"}
+pidfile="/var/run/${RC_SVCNAME}.pid"
+SSD_IONICELEVEL="${ionice}"
+SSD_NICELEVEL="${nice}"
+
+start() {
+        start-stop-daemon --exec "${user_userd}/start" --pidfile "${pidfile}" --user="${user_name}" --background --chdir="${user_userd}" --make-pidfile --stdout "${user_userd}/stdout.log" --stderr "${user_userd}/stderr.log"
+}
+
+stop() {
+        timeout "${shutdown_timeout}" su -l -c "cd ${user_userd} ; ${user_userd}/shutdown" - "${user_name}"
+}
