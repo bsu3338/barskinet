@@ -215,9 +215,9 @@ fi
 ```
 12. Switch to the pihole user `su - pihole` the dash is important to set the XDG_RUNTIME_VARIABLE
 13. edit /etc/subuid  
- - pihole:231072:65536
+ - pihole:100100000:65536
 15. edit /etc/subgid
- - pihole:231072:65536
+ - pihole:100100000:65536
 17. apk add shadow-subids
 - apk add util-linux-misc
 - # Needed to prevent error The host root filesystem is mounted as "". Setting child propagation to "rslave" is not supported.
