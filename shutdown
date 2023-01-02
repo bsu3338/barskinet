@@ -1,25 +1,27 @@
 #!/bin/sh
 
+ID=$(id -u)
+
 #check bypass first
-if pgrep -U 1001 -x /usr/local/bin/bypass4netnsd
+if pgrep -U $ID -x /usr/local/bin/bypass4netnsd
 then
         echo "bypass4netnsd is running"
         logger "stopping bypass4netnsd"
-        kill -9 `/usr/bin/pgrep -U 1001 -x /usr/local/bin/bypass4netnsd`
+        kill -9 `/usr/bin/pgrep -U $ID -x /usr/local/bin/bypass4netnsd`
 #else
 #       /usr/local/bin/bypass4netnsd &
 #       logger "Starting bypass4netnsd"
 fi
 
-if pgrep -U 1001 -x containerd
+if pgrep -U $ID -x containerd
 then
          echo "containerd is running"
          logger "containerd is running"
-         kill -9 `/usr/bin/pgrep -U 1001 -x containerd`
+         kill -9 `/usr/bin/pgrep -U $ID -x containerd`
 #    else
 #            /usr/local/bin/containerd-rootless.sh &
 #            logger "Starting containerd-rootless.sh"
 #    fi
 fi
 
-kill -9 `pgrep -U 1001 -f /home/pihole/.userd//start`
+kill -9 `pgrep -U $ID -f /home/pihole/.userd//start`
